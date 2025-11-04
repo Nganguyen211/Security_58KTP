@@ -77,3 +77,53 @@ VI. GỢI Ý CÔNG CỤ
 - OpenSSL, iText7/BouncyCastle, pypdf/PyPDF2.
 - Tham khảo chuẩn PDF: ISO 32000-2 (PDF 2.0) và ETSI EN 319 142 (PAdES).
 ---
+
+
+THÔNG TIN CÁ NHÂN
+Họ và tên: Nguyễn Thị Hằng Nga
+MSSV: 
+Lớp: K58KTP
+BÀI TẬP MÔN : AN TOÀN VÀ BẢO MẬT THÔNG TIN
+
+BÀI TẬP 2: CHỮ KÝ SỐ TRONG FILE PDF
+
+I. MỤC TIÊU, YÊU CẦU VÀ CÔNG CỤ
+Phân tích và thực hiện quy trình việc tạo, nhúng và xác thực chữ ký số trong file PDF.
+Phải nêu rõ chuẩn tham chiếu (PDF 1.7 / PDF 2.0, PAdES/ETSI) và sử dụng công cụ thực thi (ví dụ iText7, OpenSSL, PyPDF, pdf-lib).
+
+OpenSSL: sinh cặp khóa và chứng thư số tự ký (self-signed)
+PyPDF2 / pikepdf: thao tác PDF và nhúng vùng chữ ký
+hashlib, base64: băm dữ liệu và mã hóa chữ ký
+Python: viết script tự động hoá ký và xác minh
+Yêu cầu, công cụ
+
+Cấu trúc PDF & chữ ký: Nghiên cứu ISO 32000-2
+Thời gian ký: /M, RFC3161, DSS"
+Tạo chữ ký (RSA, PKCS#7): OpenSSL + Python
+Xác thực chữ ký: PyPDF2 + cryptography
+LTV (PAdES): DSS + OCSP/CRL
+Tham khảo chuẩn PDF: ISO 32000-2 (PDF 2.0) và ETSI EN 319 142 (PAdES).
+
+II. CẤU TRÚC CỦA DỰ ÁN
+<img width="1036" height="594" alt="image" src="https://github.com/user-attachments/assets/ab4c3449-09b1-4224-812f-eb6c889777bc" />
+III. QUY TRÌNH THỰC HIỆN
+1. Tạo khóa RSA và chứng chỉ
+Em sử dụng OpenSSL trên Windows để tạo cặp khóa RSA và chứng chỉ X.509 tự ký:
+
+Tạo RSA Private Key (2048 bit)
+openssl genrsa -out private.key 2048
+Tạo Certificate Signing Request (CSR)
+openssl req -new -key private.key -out cert.csr
+Tạo X.509 Self-Signed Certificate từ private key + CSR
+openssl x509 -req -days 365 -in cert.csr -signkey private.key -out cert.pem
+Các file thu được:
+
+D:\VISUAL STUDIO CODE\ChuKySo\certs\
+ ├── private.key           # chứa private RSA key
+ ├── cert.pem              # chứa public key + certificate
+ └── cert.csr
+Và được dùng trong pyHanko để đóng gói PKCS#7. Các file này được đặt trong thư mục certs/ và được script sign_pdf.py sử dụng để tạo PKCS#7/CMS detached và chèn vào PDF theo chuẩn PAdES.
+
+2. Tạo File PDF và ký File PDF
+Tạo File có tên: sign_pdf.py trong thư mục scripts
+Trong VSCODE mở Terminal bằng ctrl + ~ và chạy lệnh python sign_pdf.py sinh ra 1 file signed.pdf như ảnh bên dưới.

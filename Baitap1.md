@@ -44,6 +44,11 @@ Giải mã: P = (C - k) mod 26.
 Brute-force: thử 26 khóa — đọc kết quả để chọn ý nghĩa.
 
 Frequency analysis: dò tần suất chữ cái (E, T, A...) để suy ra k.
+*Cài đặt thuật toán mã hoá và giải mã bằng code C++ và bằng html+css+javascript.
+Mã hóa và giải thuật bằng C++
+<img width="779" height="451" alt="image" src="https://github.com/user-attachments/assets/62b0ba27-ea5a-4730-abb0-502c4ea1ae01" />
+
+
 
 2) Affine 
 
@@ -70,6 +75,7 @@ Tổng keyspace = 12 * 26 = 312.
 Brute-force: thử tất cả 312 cặp (a,b) — dễ.
 
 Known plaintext / frequency: dùng tần suất để tìm a,b.
+Mã hóa và giải thuật bằng C++
 
 3) Transposition (Columnar) 
 

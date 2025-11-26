@@ -76,6 +76,7 @@ Brute-force: thử tất cả 312 cặp (a,b) — dễ.
 
 Known plaintext / frequency: dùng tần suất để tìm a,b.
 Mã hóa và giải thuật bằng C++
+<img width="757" height="308" alt="image" src="https://github.com/user-attachments/assets/38489295-02af-4f78-b876-3a7b02228028" />
 
 3) Transposition (Columnar) 
 
@@ -106,6 +107,7 @@ Brute-force: thử các hoán vị cột (m! lớn → chỉ khả thi cho m nh�
 Kỹ thuật thống kê: kiểm tra tính hợp lý (ngôn ngữ), bigram/trigram, hoặc dùng anagramming + hill-climbing (heuristic) để tìm hoán vị cho điểm cao nhất theo mô hình ngôn ngữ (như simulated annealing, genetic algorithm).
 
 Nếu attacker có plaintext nguyên mẫu hoặc biết cấu trúc (ví dụ từ khóa độ dài nhỏ), dễ hơn.
+<img width="756" height="312" alt="image" src="https://github.com/user-attachments/assets/bd35a87b-20cb-4d19-a9eb-b5dbe78fb052" />
 
 4) Vigenère
 
@@ -134,6 +136,7 @@ Friedman test (index of coincidence): ước lượng độ dài khóa.
 Sau khi biết độ dài m, tách ciphertext thành m chuỗi (các chữ vị trí mod m) và thực hiện frequency analysis (vì mỗi chuỗi là như Caesar).
 
 Known plaintext attack cũng dễ.
+<img width="755" height="344" alt="image" src="https://github.com/user-attachments/assets/9a4003ce-3a7d-4a74-bd26-077a65def473" />
 
 5. Playfair cipher
 * Tên
@@ -173,3 +176,4 @@ Frequency analysis of digraphs (thống kê cặp 2-chữ).
 Hill-climbing / simulated annealing: tìm bảng 5×5 tốt nhất đánh giá bằng mô hình ngôn ngữ (score log-likelihood từ quadgrams).
 
 Có nhiều công cụ tự động cổ điển (như simulated annealing) để phá Playfair.
+<img width="755" height="330" alt="image" src="https://github.com/user-attachments/assets/3279ab32-b3be-4459-bb57-90258b917f91" />
